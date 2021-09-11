@@ -16,12 +16,18 @@ export class CurrentLocation extends React.Component {
       super(props);
   
       const { lat, lng } = this.props.initialCenter;
+      const {otherlat, otherlng} = this.props.initialCenter;
   
       this.state = {
         currentLocation: {
           lat: lat,
           lng: lng
+        },
+        otherLocation: {
+          lat: otherlat,
+          lng: otherlng
         }
+
       };
     }
     loadMap() {
@@ -119,8 +125,8 @@ export class CurrentLocation extends React.Component {
   CurrentLocation.defaultProps = {
     zoom: 14,
     initialCenter: {
-      lat: -1.2884,
-      lng: 36.8233
+      lat: 39.9042,
+      lng: 116.4074
     },
     centerAroundCurrentLocation: false,
     visible: true
