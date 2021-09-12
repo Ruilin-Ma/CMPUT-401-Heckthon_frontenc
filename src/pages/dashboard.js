@@ -38,13 +38,17 @@ export class MapContainer extends Component {
         selectedPlace: {}          // Shows the InfoWindow to the selected place upon a marker
       };
 
-      onMarkerClick = (props, marker, e) =>
-      this.setState({
-        selectedPlace: props,
-        activeMarker: marker,
-        showingInfoWindow: true
-      });
-  
+      onMarkerClick = (props, marker, e) => {
+        this.setState({
+            selectedPlace: props.name,
+            activeMarker: marker,
+            showingInfoWindow: true
+          });
+
+          console.log("this is the data")
+          console.log(this.state.selectedPlace);
+      }
+
         onClose = props => {
         if (this.state.showingInfoWindow) {
             this.setState({
@@ -89,12 +93,13 @@ export class MapContainer extends Component {
              
             return (
                 <Marker
-                    key={marker.id}
+                    // key={marker.id}
                     onClick={this.onMarkerClick}
-                    title={'lalala'}
+                    // title={'lalala'}
                     position={{ lat: marker.latitude, lng: marker.longitude }}
+                    name={marker.name}
                 >
-                    <InfoWindow
+                    {/* <InfoWindow
                     marker={this.state.activeMarker}
                     visible={this.state.showingInfoWindow}
                     onClose={this.onClose}>
@@ -102,10 +107,18 @@ export class MapContainer extends Component {
                             {marker.shelter}
                             <div>
                                 lalala
-                                {/* <h3>{this.state.selectedPlace.name}</h3> */}
                             </div>
                         </div>
-                    </InfoWindow>
+                    </InfoWindow> */}
+                    <InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}
+          onClose={this.onClose}
+        >
+          <div>
+            <h3>{this.state.selectedPlace.name}</h3>
+          </div>
+        </InfoWindow> 
                 </Marker>
             )
         })}

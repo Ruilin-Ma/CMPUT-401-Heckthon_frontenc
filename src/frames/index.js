@@ -9,6 +9,10 @@ const { RangePicker } = DatePicker;
 
 function Frame(props){
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [dataSource, setDataSource] = useState([{
+        e_id:11,
+        e_title:"SADfsda"
+    }]);
 
     const layout = {
         labelCol: { span: 8 },
@@ -37,6 +41,16 @@ function Frame(props){
     const handleCancel = () => {
         setIsModalVisible(false);
     };
+
+    const onFinishFailed = (errorInfo) => {
+        console.log('Failed:', errorInfo);
+    };
+
+    // useEffect(() => {
+    //     createEventApi().then(res => {
+    //         setDataSource(res.data.data);
+    //     })
+    // }, [])
 
     
     return (
